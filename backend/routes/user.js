@@ -16,7 +16,6 @@ const signupBody = zod.object({
 })
 
 userRouter.post("/signup", async(req,res)=>{
-    //const body = req.body;
     const {success} = signupBody.safeParse(req.body);
     if(!success){
         return res.status(411).json({
@@ -34,30 +33,32 @@ userRouter.post("/signup", async(req,res)=>{
         })
     }
 
-   const dbUser= await User.create({
-    username: req.body.username,
+    const dbUser = await User.create({
+        username: req.body.username,
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-});
+    });
 
-   await Account.create({
-     userId: dbUser._id,
-     balance: 1+ Math.random()*10000
-   })
+    // Create account with initial balance
+    await Account.create({
+        userId: dbUser._id,
+        balance: 1 + Math.random()*10000
+    })
 
-   const token = jwt.sign({
-    userId: dbUser._id
-   },JWT_SECRET);
-   console.log("Generated Token:", token);
-   console.log("Payload used to generate token:", { userId: dbUser._id });
+    // Generate token with full user object for debugging
+    const token = jwt.sign({
+        userId: dbUser._id.toString() // Convert ObjectId to string
+    }, JWT_SECRET);
 
-   
+    console.log("User created:", dbUser);
+    console.log("Token payload:", { userId: dbUser._id.toString() });
+    console.log("Generated token:", token);
 
-   res.json({
-    message: "user created",
-    token: token
-   })
+    res.json({
+        message: "User created successfully",
+        token: token
+    })
 })
 
 const signinbody = zod.object({
@@ -80,9 +81,12 @@ userRouter.post("/signin", async (req,res)=>{
 
     if(user){
         const token = jwt.sign({
-            userId: user._id
-        },JWT_SECRET);
+            userId: user._id.toString()  // Convert to string here too
+        }, JWT_SECRET);
 
+        console.log("Signin - User:", user);
+        console.log("Signin - Token payload:", { userId: user._id.toString() });
+        
         res.json({
             token: token
         })

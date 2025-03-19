@@ -5,13 +5,33 @@ const { default: mongoose } = require('mongoose');
 const accountRouter = express.Router();
 
 accountRouter.get("/balance", authmware, async (req, res) => {
-    const account = await Account.findOne({
-        userId: req.userId
-    });
+    console.log("Requesting balance for userId:", req.userId);
+    console.log("userId type:", typeof req.userId);
+    
+    try {
+        const account = await Account.findOne({
+            userId: req.userId
+        });
 
-    res.json({
-        balance: account.balance
-    })
+        console.log("Found account:", account);
+
+        if (!account) {
+            console.log("No account found for userId:", req.userId);
+            return res.status(404).json({
+                message: "Account not found"
+            });
+        }
+
+        res.json({
+            balance: account.balance
+        });
+    } catch (err) {
+        console.error("Error fetching balance:", err);
+        console.error("Full error:", JSON.stringify(err, null, 2));
+        res.status(500).json({
+            message: "Error fetching balance"
+        });
+    }
 });
 
 accountRouter.post("/transfer", authmware, async (req, res) => {
