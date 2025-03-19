@@ -12,14 +12,15 @@ const authmware = (req,res,next) => {
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
+        console.log("Generated Token:", decoded.userId);
         if(decoded.userId){
             req.userId = decoded.userId;
-            next()
+            next();
         } else{
             return res.status(403).json({})
         }
     } catch (err) {
-        return req.status(403).json({});
+        return res.status(403).json({message:"invalid token"});
     }
 };
 
