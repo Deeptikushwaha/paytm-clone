@@ -40,7 +40,7 @@ userRouter.post("/signup", async(req,res)=>{
         lastName: req.body.lastName,
     });
 
-    // Create account with initial balance
+    // Creating account with initial balance
     const account = await Account.create({
         userId: dbUser._id,
         balance: 1 + Math.random()*10000
