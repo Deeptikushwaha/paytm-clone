@@ -41,7 +41,7 @@ userRouter.post("/signup", async(req,res)=>{
     });
 
     // Create account with initial balance
-    await Account.create({
+    const account = await Account.create({
         userId: dbUser._id,
         balance: 1 + Math.random()*10000
     })
@@ -57,7 +57,8 @@ userRouter.post("/signup", async(req,res)=>{
 
     res.json({
         message: "User created successfully",
-        token: token
+        token: token,
+        balance: account.balance
     })
 })
 
