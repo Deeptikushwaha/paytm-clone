@@ -62,7 +62,7 @@ npm start
 cd frontend
 npm start
 ```
-## API Reference
+## API Reference (backend url - https://pay-lite.onrender.com)
 
 **Signup - Create new user**
 
