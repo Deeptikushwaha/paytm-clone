@@ -2,8 +2,12 @@ const express = require("express");
 const cors = require('cors')
 
 const app= express();
-app.use(express.json())
-app.use(cors());
+app.use(express.json());
+app.use(cors({
+  origin: 'https://paytmlite-ten.vercel.app/', // Vercel frontend URL
+  credentials: true, // Allow cookies and credentials
+}));
+
 
 const mainRouter = require("./routes/index")
 

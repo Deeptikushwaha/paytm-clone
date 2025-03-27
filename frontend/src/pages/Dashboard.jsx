@@ -10,7 +10,7 @@ export const Dashboard=()=>{
     });
     
         const fetchBalance = async()=>{
-            const response = await axios.get("http://localhost:4000/api/v1/account/balance",{
+            const response = await axios.get("https://pay-lite.onrender.com/api/v1/account/balance",{
                 headers:{
                     'Authorization': "Bearer "+localStorage.getItem("token"),
                     'Content-Type': 'application/json'

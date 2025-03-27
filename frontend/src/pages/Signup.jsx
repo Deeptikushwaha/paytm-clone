@@ -36,7 +36,7 @@ export const Signup = () => {
 
         <div className='pt-7'>
             <Button onClick={async()=>{
-                const response = await axios.post("http://localhost:4000/api/v1/user/signup",{
+                const response = await axios.post("https://pay-lite.onrender.com/api/v1/user/signup",{
                     username,
                     firstName,
                     lastName,

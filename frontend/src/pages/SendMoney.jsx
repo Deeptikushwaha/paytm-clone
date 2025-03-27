@@ -35,7 +35,7 @@ export const SendMoney = () => {
                     />
                 </div>
                 <button onClick={async()=>{
-                    await axios.post("http://localhost:4000/api/v1/account/transfer",{
+                    await axios.post("https://pay-lite.onrender.com/api/v1/account/transfer",{
                         to: id,
                         amount
                     },{
