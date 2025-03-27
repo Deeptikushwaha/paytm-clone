@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const userRouter = express.Router();
 const zod = require("zod");
 const jwt = require("jsonwebtoken");
-const {User, Account} = require('../../db');
+const {User, Account} = require('../db');
 const JWT_SECRET = require('../config');
-const {authmware} = require('../../middleware');
+const {authmware} = require('../middleware');
 
 const signupBody = zod.object({
     username: zod.string().email(),
