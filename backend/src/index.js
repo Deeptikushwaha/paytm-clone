@@ -5,7 +5,7 @@ const app= express();
 app.use(express.json())
 app.use(cors());
 
-const mainRouter = require("./src/routes/index")
+const mainRouter = require("./routes/index")
 
 app.use("/api/v1", mainRouter);
 
