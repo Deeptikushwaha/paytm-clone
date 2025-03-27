@@ -9,7 +9,10 @@ const mainRouter = require("./routes/index")
 
 app.use("/api/v1", mainRouter);
 
-app.listen(4000);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // /api/v1 -> mainrouter 
 
