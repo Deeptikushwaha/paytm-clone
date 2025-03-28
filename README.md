@@ -1,5 +1,5 @@
 
-# PayLite - A Digital Payment & Wallet System
+# PayLite - A Digital Payment & Wallet System 
 
 PayLite is basically a payTM like application that let's users send money to each other given an initial dummy balance. It is a fully functional digital payment and wallet system built using React.js, Redux, Node.js, Express.js, JWT, Mongoose, and TailwindCSS. It replicates the core functionalities of modern digital wallets, enabling seamless transactions with a responsive and intuitive interface.
 
